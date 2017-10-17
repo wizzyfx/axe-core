@@ -492,7 +492,8 @@ describe('runRules', function () {
 
 		fixture.innerHTML = '<div></div>';
 
-		axe.a11yCheck('#fixture', function (results) {
+		axe.run('#fixture', function (err, results) {
+			assert.isNull(err);
 			assert.lengthOf(results.incomplete, 2);
 			assert.equal(results.incomplete[0].id, 'incomplete-1');
 			assert.equal(results.incomplete[1].id, 'incomplete-2');
@@ -528,7 +529,8 @@ describe('runRules', function () {
 		});
 
 		iframeReady('../mock/frames/rule-error.html', fixture, 'context-test', function () {
-			axe.a11yCheck('#fixture', function (results) {
+			axe.run('#fixture', function (err, results) {
+				assert.isNull(err);
 				assert.lengthOf(results.incomplete, 2);
 				assert.equal(results.incomplete[0].id, 'incomplete-1');
 				assert.equal(results.incomplete[1].id, 'incomplete-2');
@@ -536,7 +538,7 @@ describe('runRules', function () {
 				assert.include(results.incomplete[1].description,
 							'An error occured while running this rule');
 				done();
-			}, isNotCalled);
+			});
 		});
 	});
 
