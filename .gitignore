@@ -11,3 +11,4 @@ typings/axe-core/axe-core-tests.js
 doc/rule-descriptions.*.md
 package-lock.json
 .DS_Store
+.idea
